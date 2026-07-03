@@ -74,38 +74,49 @@
   }
 
   /* -----------------------------------------------------------
-     Contact form — no backend on GitHub Pages, so compose a
-     pre-filled email to open in the visitor's mail app on submit.
-     (For in-page submission, point the <form> at a Formspree
-     endpoint via its action attribute and delete this handler.)
+     Contact form — submits to Formspree in the background via
+     fetch, so the visitor stays on the page and gets a
+     confirmation message.
      ----------------------------------------------------------- */
   function initContactForm() {
     var form = document.getElementById('contactForm');
     if (!form) return;
     var note = document.getElementById('formNote');
+    var button = form.querySelector('button[type="submit"]');
+
+    function setNote(msg) {
+      if (note) note.textContent = msg;
+    }
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var data = new FormData(form);
-      var name = (data.get('name') || '').trim();
-      var email = (data.get('email') || '').trim();
-      var purpose = (data.get('purpose') || '').trim();
-      var details = (data.get('details') || '').trim();
+      setNote('Sending…');
+      if (button) button.disabled = true;
 
-      var subject = '[Portfolio] ' + purpose + (name ? ' — ' + name : '');
-      var body =
-        'Name: ' + name + '\n' +
-        'Email: ' + email + '\n' +
-        'Purpose: ' + purpose + '\n\n' +
-        details;
-
-      window.location.href =
-        'mailto:neevboda01@gmail.com?subject=' +
-        encodeURIComponent(subject) +
-        '&body=' +
-        encodeURIComponent(body);
-
-      if (note) note.textContent = 'Opening your email app…';
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      })
+        .then(function (res) {
+          if (res.ok) {
+            form.reset();
+            setNote("Thanks — I'll be in touch soon.");
+          } else {
+            return res.json().then(function (data) {
+              var msg = data && data.errors
+                ? data.errors.map(function (x) { return x.message; }).join(', ')
+                : 'Something went wrong — email me directly instead.';
+              setNote(msg);
+            });
+          }
+        })
+        .catch(function () {
+          setNote('Network error — email me directly instead.');
+        })
+        .then(function () {
+          if (button) button.disabled = false;
+        });
     });
   }
 
