@@ -74,6 +74,29 @@
       <div class="gallery-item short reveal"><img class="gallery-img" src="images/gallery-18.jpg" alt="Automotive shot 18" loading="lazy"></div>
       <div class="gallery-item short reveal"><img class="gallery-img" src="images/gallery-19.jpg" alt="Automotive shot 19" loading="lazy"></div>
       <div class="gallery-item short reveal"><img class="gallery-img" src="images/gallery-20.jpg" alt="Automotive shot 20" loading="lazy"></div>
+      <!-- Open slots — replace a placeholder with:
+           <img class="gallery-img" src="images/gallery-NN.jpg" alt="Automotive shot NN" loading="lazy">
+           and remove the "is-placeholder" class from its wrapper. -->
+      <div class="gallery-item tall is-placeholder reveal"></div>
+      <div class="gallery-item short is-placeholder reveal"></div>
+      <div class="gallery-item short is-placeholder reveal"></div>
+      <div class="gallery-item tall is-placeholder reveal"></div>
+      <div class="gallery-item short is-placeholder reveal"></div>
+      <div class="gallery-item short is-placeholder reveal"></div>
+      <div class="gallery-item tall is-placeholder reveal"></div>
+      <div class="gallery-item short is-placeholder reveal"></div>
+      <div class="gallery-item tall is-placeholder reveal"></div>
+      <div class="gallery-item short is-placeholder reveal"></div>
+      <div class="gallery-item short is-placeholder reveal"></div>
+      <div class="gallery-item tall is-placeholder reveal"></div>
+      <div class="gallery-item short is-placeholder reveal"></div>
+      <div class="gallery-item short is-placeholder reveal"></div>
+      <div class="gallery-item tall is-placeholder reveal"></div>
+      <div class="gallery-item short is-placeholder reveal"></div>
+      <div class="gallery-item short is-placeholder reveal"></div>
+      <div class="gallery-item tall is-placeholder reveal"></div>
+      <div class="gallery-item short is-placeholder reveal"></div>
+      <div class="gallery-item short is-placeholder reveal"></div>
     </div>
     <p class="gallery-note">More shots coming soon.</p>
   </section>
@@ -142,10 +165,27 @@
       <span class="status-pill"><span class="dot"></span>Currently available — Bay Area &amp; Inland Empire</span>
     </div>
     <p class="reveal">Got a car worth putting in front of a lens? Let's talk.</p>
-    <div class="contact-links reveal">
-      <a class="chrome-btn" href="mailto:neevboda01@gmail.com"><span>Email</span></a>
-      <a class="chrome-btn" href="https://instagram.com/neevboda_" target="_blank" rel="noopener"><span>Instagram</span></a>
-    </div>
+    <p class="contact-details reveal">
+      <a href="mailto:neevboda01@gmail.com">neevboda01@gmail.com</a>
+      <span class="contact-sep">·</span>
+      <a href="https://instagram.com/neevboda_" target="_blank" rel="noopener">@neevboda_</a>
+    </p>
+    <form class="contact-form reveal" id="contactForm">
+      <div class="form-row">
+        <input type="text" name="name" placeholder="Your name" autocomplete="name" required>
+        <input type="email" name="email" placeholder="Your email" autocomplete="email" required>
+      </div>
+      <select name="purpose" required aria-label="Purpose of contact">
+        <option value="" disabled selected>What's this about?</option>
+        <option>Booking a shoot</option>
+        <option>Collab</option>
+        <option>Car meet / event coverage</option>
+        <option>Something else</option>
+      </select>
+      <textarea name="details" rows="5" placeholder="Tell me what you're looking for — the car, the location, a date, any ideas you have in mind…" required></textarea>
+      <button type="submit" class="chrome-btn"><span>Send Message</span></button>
+      <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
+    </form>
   </section>
 
   <!-- ============================ LIGHTBOX ============================ -->

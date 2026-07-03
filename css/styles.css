@@ -425,6 +425,26 @@ html.js .hero-veil.out {
 .gallery-item:hover::after { opacity: 1; }
 .gallery-item:hover .gallery-img { transform: scale(1.06); }
 
+/* Empty gallery slots — awaiting future photos */
+.gallery-item.is-placeholder {
+  cursor: default;
+  background: var(--card);
+}
+
+.gallery-item.is-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.22;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 30px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238a8c8f' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z'/%3E%3Ccircle cx='12' cy='13' r='4'/%3E%3C/svg%3E");
+}
+
+.gallery-item.is-placeholder:hover::after { opacity: 0; }
+
 .gallery-note {
   margin-top: 24px;
   font-family: 'Oswald', sans-serif;
@@ -686,6 +706,125 @@ html.js .hero-veil.out {
   mix-blend-mode: difference;
 }
 
+button.chrome-btn {
+  background: none;
+  cursor: pointer;
+  align-self: center;
+  margin-top: 10px;
+}
+
+/* Email + Instagram line */
+.contact-section .contact-details {
+  margin-bottom: 46px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 15px;
+  letter-spacing: 1.5px;
+  color: var(--text-dim);
+}
+
+.contact-details a {
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 2px;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.contact-details a:hover {
+  color: var(--chrome-3);
+  border-color: var(--chrome-2);
+}
+
+.contact-sep {
+  margin: 0 14px;
+  color: var(--text-dim);
+}
+
+/* Contact form */
+.contact-form {
+  max-width: 540px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+}
+
+.form-row > * {
+  flex: 1;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  width: 100%;
+  padding: 15px 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 0;
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  transition: border-color 0.3s ease, background 0.3s ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 130px;
+  line-height: 1.6;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: var(--text-dim);
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--chrome-2);
+  background: var(--black-soft);
+}
+
+/* Select: dim while on the placeholder option, custom chevron */
+.contact-form select {
+  color: var(--text-dim);
+  cursor: pointer;
+  padding-right: 40px;
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 12px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8' fill='none' stroke='%238a8c8f' stroke-width='1.5'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+}
+
+.contact-form select:valid {
+  color: var(--text);
+}
+
+.contact-form select option {
+  color: var(--text);
+  background: var(--black-soft);
+}
+
+.form-note {
+  min-height: 16px;
+  margin-top: 2px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-align: center;
+}
+
 /* -------------------------------------------------------------
    Lightbox
    ------------------------------------------------------------- */
@@ -817,11 +956,12 @@ html.js .reveal.in {
 }
 
 @media (max-width: 560px) {
-  .gallery { columns: 1; }
+  .gallery { columns: 2; column-gap: 2px; }
   nav { padding: 22px 6vw; }
   nav.scrolled { padding: 14px 6vw; }
   .section { padding: 90px 6vw; }
   .services-grid { grid-template-columns: 1fr; }
+  .form-row { flex-direction: column; }
 }
 
 /* Respect reduced-motion for CSS-driven loops */

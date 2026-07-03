@@ -74,6 +74,42 @@
   }
 
   /* -----------------------------------------------------------
+     Contact form — no backend on GitHub Pages, so compose a
+     pre-filled email to open in the visitor's mail app on submit.
+     (For in-page submission, point the <form> at a Formspree
+     endpoint via its action attribute and delete this handler.)
+     ----------------------------------------------------------- */
+  function initContactForm() {
+    var form = document.getElementById('contactForm');
+    if (!form) return;
+    var note = document.getElementById('formNote');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var data = new FormData(form);
+      var name = (data.get('name') || '').trim();
+      var email = (data.get('email') || '').trim();
+      var purpose = (data.get('purpose') || '').trim();
+      var details = (data.get('details') || '').trim();
+
+      var subject = '[Portfolio] ' + purpose + (name ? ' — ' + name : '');
+      var body =
+        'Name: ' + name + '\n' +
+        'Email: ' + email + '\n' +
+        'Purpose: ' + purpose + '\n\n' +
+        details;
+
+      window.location.href =
+        'mailto:neevboda01@gmail.com?subject=' +
+        encodeURIComponent(subject) +
+        '&body=' +
+        encodeURIComponent(body);
+
+      if (note) note.textContent = 'Opening your email app…';
+    });
+  }
+
+  /* -----------------------------------------------------------
      Hero chrome-text shimmer follows the pointer, giving a
      "light moving over metal" feel.
      ----------------------------------------------------------- */
@@ -198,6 +234,7 @@
   function boot() {
     initLightbox();
     initMobileNav();
+    initContactForm();
     initHeroShimmer();
     initScrollUI();
     initReveals();
