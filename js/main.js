@@ -45,6 +45,35 @@
   }
 
   /* -----------------------------------------------------------
+     Mobile navigation (hamburger menu)
+     ----------------------------------------------------------- */
+  function initMobileNav() {
+    var toggle = document.getElementById('navToggle');
+    var links = document.getElementById('navLinks');
+    if (!toggle || !links) return;
+
+    function setOpen(open) {
+      toggle.classList.toggle('open', open);
+      links.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+
+    toggle.addEventListener('click', function () {
+      setOpen(!links.classList.contains('open'));
+    });
+
+    // Close the menu when a link is tapped or Escape is pressed.
+    links.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        setOpen(false);
+      });
+    });
+    window.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setOpen(false);
+    });
+  }
+
+  /* -----------------------------------------------------------
      Hero chrome-text shimmer follows the pointer, giving a
      "light moving over metal" feel.
      ----------------------------------------------------------- */
@@ -168,6 +197,7 @@
      ----------------------------------------------------------- */
   function boot() {
     initLightbox();
+    initMobileNav();
     initHeroShimmer();
     initScrollUI();
     initReveals();
