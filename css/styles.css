@@ -440,9 +440,51 @@ html.js .hero-veil.out {
    ------------------------------------------------------------- */
 .about-wrap {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 70px;
   align-items: start;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+/* Portrait — placeholder until a photo is supplied */
+.about-photo {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  background: var(--card);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.about-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.about-photo-icon {
+  width: 42px;
+  height: 42px;
+  color: var(--text-dim);
+  opacity: 0.55;
+}
+
+.about-photo-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-dim);
 }
 
 .about-text p {
