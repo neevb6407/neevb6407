@@ -1,56 +1,83 @@
-# NEEV — Automotive Photographer
+<h1 align="center">NEEV</h1>
+<p align="center"><strong>Automotive Photographer</strong></p>
+<p align="center"><em>Chasing light across paint and chrome.</em></p>
 
-Single-page portfolio for automotive photographer Neev (`@neevboda_`).
+<p align="center">
+  <a href="https://instagram.com/neevboda_">📷 @neevboda_</a>
+  &nbsp;•&nbsp;
+  <a href="mailto:neevboda01@gmail.com">✉️ neevboda01@gmail.com</a>
+  &nbsp;•&nbsp;
+  📍 Bay Area &amp; Inland Empire
+</p>
 
-## Structure
+<p align="center">🟢 <strong>Available for bookings &amp; collabs</strong></p>
 
-```
-portfolio/
-├── index.html          # Markup — semantic sections, GSAP loaded via CDN
-├── css/
-│   └── styles.css      # All styling + scroll-reveal initial states
-├── js/
-│   └── main.js         # Lightbox, hero shimmer, scroll UI, GSAP animations
-└── images/
-    ├── hero.jpg        # Hero background
-    └── gallery-01..20.jpg
-```
+<p align="center">
+  <img src="images/hero.jpg" alt="Automotive photography by Neev" width="100%">
+</p>
 
-Sections: **Hero → Work (gallery) → About → Services → Contact / Hire Me**.
+---
 
-## Tech stack & animation approach
+## 👋 About
 
-- **Pure HTML / CSS / JavaScript** — no build step, no framework, and **no external
-  libraries**. The whole site runs offline; just open `index.html` or serve the folder
-  statically.
-- **Animation = CSS transitions + `IntersectionObserver`.** Scroll reveals are plain
-  `.reveal` elements that get an `.in` class when they scroll into view; the movement
-  itself is a CSS transition. Grouped elements (`[data-stagger]`) get a small cascading
-  `transition-delay`. This keeps the JS tiny and the motion GPU-friendly.
-- **Progressive enhancement & accessibility.** A tiny inline script adds `html.js` only
-  when JS is available and the user hasn't requested reduced motion; the reveal "hidden"
-  states are gated on that class. If JS is disabled or `prefers-reduced-motion` is set,
-  everything renders fully visible — nothing is trapped behind an animation.
+I'm **Neev, and I shoot cars.**
 
-### Animations included
+Not the dealership-lot kind — the kind that's been lowered, wrapped, and built by
+somebody who actually gives a damn. I'm chasing the way light sits on a fresh wrap
+or catches off a set of wheels at the right angle, not just parking a car in a lot
+and snapping a photo of it.
 
-- Cinematic hero entrance (veil fade → staggered rise of eyebrow, title, subtitle, status)
-- Chrome-text shimmer that tracks the pointer ("light over metal")
-- Subtle hero background parallax on scroll
-- Scroll-triggered reveals for headings, gallery, about, services, and contact
-- Sticky nav that condenses on scroll + a top scroll-progress bar
-- Magnetic hover on the contact buttons
-- Animated lightbox for full-size gallery images
+Automotive is the main focus right now, but I plan on expanding my niche — and that
+side of the portfolio is coming.
 
-## Local preview
+---
 
-```bash
-python3 -m http.server 8000
-# then open http://localhost:8000
-```
+## 📸 What I Shoot
 
-## Additions over the original template
+| | |
+|---|---|
+| **Rolling Shots** | Panned motion work — your car alive on the road, wheels turning, background streaked in speed. |
+| **Static & Details** | Full-body compositions plus the close-ups — wheels, badges, paint texture, and the way light wraps a fresh set. |
+| **Meets & Events** | Coverage for car meets and gatherings — candid, fast, and built to capture the whole scene. |
+| **Editing & Retouch** | Color grading, cleanup, and delivery-ready edits — the finish that makes a shot hit. |
 
-- Extracted 21 inline base64 images into `images/` and split the monolithic file into HTML/CSS/JS.
-- Added a pulsing **"Available for bookings"** status pill (hero + contact).
-- Added a **"What I Shoot" / Services** section (Rolling Shots, Static & Details, Meets & Events, Editing).
+---
+
+## 🖼️ Featured Work
+
+<table>
+  <tr>
+    <td><img src="images/gallery-05.jpg" width="100%"></td>
+    <td><img src="images/gallery-07.jpg" width="100%"></td>
+    <td><img src="images/gallery-16.jpg" width="100%"></td>
+  </tr>
+  <tr>
+    <td><img src="images/gallery-10.jpg" width="100%"></td>
+    <td><img src="images/gallery-13.jpg" width="100%"></td>
+    <td><img src="images/gallery-20.jpg" width="100%"></td>
+  </tr>
+</table>
+
+<p align="center"><em>More shots in the <a href="https://instagram.com/neevboda_">gallery on Instagram →</a></em></p>
+
+---
+
+## 🎒 The Setup
+
+| | |
+|---|---|
+| **Based** | Bay Area & Inland Empire |
+| **Primary Focus** | Automotive |
+| **Gear** | Sony a6700 · 16-50mm |
+| **Available For** | Bookings & Collabs |
+
+---
+
+## 🤝 Let's Shoot
+
+Got a car worth putting in front of a lens? Let's talk.
+
+- **Email** — [neevboda01@gmail.com](mailto:neevboda01@gmail.com)
+- **Instagram** — [@neevboda_](https://instagram.com/neevboda_)
+
+<p align="center">© 2026 Neev · Automotive Photographer</p>
