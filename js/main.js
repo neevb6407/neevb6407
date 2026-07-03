@@ -17,9 +17,33 @@
     var lightbox = document.getElementById('lightbox');
     var lightboxImg = document.getElementById('lightboxImg');
     var lightboxClose = document.getElementById('lightboxClose');
+    var prevBtn = document.getElementById('lightboxPrev');
+    var nextBtn = document.getElementById('lightboxNext');
 
-    function open(src) {
-      lightboxImg.src = src;
+    // Only real photos are navigable (placeholders have no <img>).
+    var images = Array.prototype.slice.call(document.querySelectorAll('.gallery-item img'));
+    var index = 0;
+
+    // Hide the arrows when there's nothing to page through.
+    if (images.length < 2) {
+      if (prevBtn) prevBtn.style.display = 'none';
+      if (nextBtn) nextBtn.style.display = 'none';
+    }
+
+    function show(i) {
+      index = (i + images.length) % images.length;
+      var img = images[index];
+      // brief crossfade between photos (forced reflow commits opacity:0
+      // before transitioning back to 1 — no reliance on rAF)
+      lightboxImg.style.opacity = '0';
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt || '';
+      void lightboxImg.offsetWidth;
+      lightboxImg.style.opacity = '1';
+    }
+
+    function openAt(i) {
+      show(i);
       lightbox.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
@@ -29,18 +53,26 @@
       document.body.style.overflow = '';
     }
 
-    document.querySelectorAll('.gallery-item img').forEach(function (img) {
-      img.addEventListener('click', function () {
-        open(img.src);
-      });
+    function next() { show(index + 1); }
+    function prev() { show(index - 1); }
+
+    images.forEach(function (img, i) {
+      img.addEventListener('click', function () { openAt(i); });
     });
+
+    if (nextBtn) nextBtn.addEventListener('click', function (e) { e.stopPropagation(); next(); });
+    if (prevBtn) prevBtn.addEventListener('click', function (e) { e.stopPropagation(); prev(); });
 
     lightboxClose.addEventListener('click', close);
     lightbox.addEventListener('click', function (e) {
       if (e.target === lightbox) close();
     });
+
     window.addEventListener('keydown', function (e) {
+      if (!lightbox.classList.contains('active')) return;
       if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowRight') next();
+      else if (e.key === 'ArrowLeft') prev();
     });
   }
 

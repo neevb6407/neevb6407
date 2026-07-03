@@ -881,6 +881,46 @@ button.chrome-btn {
   transform: rotate(90deg);
 }
 
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  padding: 0;
+  background: rgba(19, 19, 21, 0.5);
+  border: 1px solid var(--line);
+  color: var(--chrome-2);
+  cursor: pointer;
+  z-index: 3;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.lightbox-prev { left: 5vw; }
+.lightbox-next { right: 5vw; }
+
+.lightbox-nav:hover {
+  color: var(--chrome-3);
+  border-color: var(--chrome-2);
+  background: rgba(19, 19, 21, 0.85);
+}
+
+.lightbox-nav svg {
+  width: 22px;
+  height: 22px;
+}
+
+@media (max-width: 560px) {
+  .lightbox-nav { width: 44px; height: 44px; }
+  .lightbox-prev { left: 12px; }
+  .lightbox-next { right: 12px; }
+}
+
 /* -------------------------------------------------------------
    Footer
    ------------------------------------------------------------- */
